@@ -1,4 +1,31 @@
-import { CreateData, UpdateInfo, QueryOptions } from './types';
+interface CreateData {
+  url?: string | string[];
+  tabId?: number;
+  left?: number;
+  top?: number;
+  width?: number;
+  height?: number;
+  focused?: boolean;
+  incognito?: boolean;
+  type?: 'normal' | 'popup' | 'panel';
+  state?: 'normal' | 'minimized' | 'maximized' | 'fullscreen' | 'locked-fullscreen';
+}
+
+interface UpdateInfo {
+  left?: number;
+  top?: number;
+  width?: number;
+  height?: number;
+  focused?: boolean;
+  drawAttention?: boolean;
+  state?: 'normal' | 'minimized' | 'maximized' | 'fullscreen' | 'locked-fullscreen';
+}
+
+interface QueryOptions {
+  windowTypes?: ('normal' | 'popup' | 'panel' | 'app' | 'devtools')[];
+  populate?: boolean;
+  windowId?: number;
+}
 
 class Windows {
   public static async get(windowId: number, getInfo?: QueryOptions): Promise<chrome.windows.Window> {
@@ -119,4 +146,4 @@ class Windows {
   }
 }
 
-export { Windows };
+export { Windows, CreateData, UpdateInfo, QueryOptions };

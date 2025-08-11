@@ -1,4 +1,31 @@
-import { NotificationOptions, NotificationCallback, ButtonClickCallback, PermissionLevel } from './types';
+interface Button {
+  title: string;
+  iconUrl?: string;
+}
+
+interface Item {
+  title: string;
+  message: string;
+}
+
+interface NotificationOptions {
+  type: 'basic' | 'image' | 'list' | 'progress';
+  title: string;
+  message: string;
+  iconUrl: string;
+  buttons?: Button[];
+  priority?: number;
+  eventTime?: number;
+  imageUrl?: string;
+  items?: Item[];
+  progress?: number;
+  requireInteraction?: boolean;
+  silent?: boolean;
+}
+
+type NotificationCallback = (notificationId: string) => void;
+type ButtonClickCallback = (notificationId: string, buttonIndex: number) => void;
+type PermissionLevel = 'granted' | 'denied' | 'default';
 
 /**
  * A class that provides a type-safe wrapper around Chrome's notifications API.
@@ -14,7 +41,7 @@ class Notifications {
    */
   public static async create(options: NotificationOptions): Promise<string> {
     return new Promise((resolve, reject) => {
-      chrome.notifications.create(options, (notificationId) => {
+      chrome.notifications.create('', options, (notificationId) => {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
         } else {
@@ -89,7 +116,7 @@ class Notifications {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
         } else {
-          resolve(level);
+          resolve(level as PermissionLevel);
         }
       });
     });
@@ -126,4 +153,12 @@ class Notifications {
   }
 }
 
-export { Notifications };
+export { 
+  Notifications,
+  NotificationOptions,
+  NotificationCallback,
+  ButtonClickCallback,
+  PermissionLevel,
+  Button,
+  Item
+};

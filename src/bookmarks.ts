@@ -1,4 +1,40 @@
-import { BookmarkCreateArg, BookmarkDestination, BookmarkChanges, BookmarkTreeNode, BookmarkSearchQuery, RemoveInfo, ChangeInfo, MoveInfo } from './types';
+interface BookmarkCreateArg {
+  parentId?: string;
+  index?: number;
+  title?: string;
+  url?: string;
+}
+
+interface BookmarkDestination {
+  parentId?: string;
+  index?: number;
+}
+
+interface BookmarkChanges {
+  title?: string;
+  url?: string;
+}
+
+interface RemoveInfo {
+  parentId: string;
+  index: number;
+  node: BookmarkTreeNode;
+}
+
+interface ChangeInfo {
+  title: string;
+  url?: string;
+}
+
+interface MoveInfo {
+  parentId: string;
+  index: number;
+  oldParentId: string;
+  oldIndex: number;
+}
+
+type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
+type BookmarkSearchQuery = chrome.bookmarks.BookmarkSearchQuery;
 
 /**
  * A class that provides a type-safe wrapper around Chrome's bookmarks API.
@@ -12,9 +48,9 @@ class Bookmarks {
    * @returns A promise that resolves to an array of bookmark tree nodes
    * @throws {Error} If any of the bookmarks are not found or if there's an error
    */
-  public static async get(idOrIdList: string | [string, ...string[]]): Promise<BookmarkTreeNode[]> {
+  public static async get(idOrIdList: string | string[]): Promise<BookmarkTreeNode[]> {
     return new Promise((resolve, reject) => {
-      chrome.bookmarks.get(idOrIdList, (results) => {
+      chrome.bookmarks.get(Array.isArray(idOrIdList) ? idOrIdList : [idOrIdList], (results) => {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
         } else {
@@ -67,13 +103,23 @@ class Bookmarks {
    */
   public static async search(query: string | BookmarkSearchQuery): Promise<BookmarkTreeNode[]> {
     return new Promise((resolve, reject) => {
-      chrome.bookmarks.search(query, (results) => {
-        if (chrome.runtime.lastError) {
-          reject(chrome.runtime.lastError);
-        } else {
-          resolve(results);
-        }
-      });
+      if (typeof query === 'string') {
+        chrome.bookmarks.search(query, (results) => {
+          if (chrome.runtime.lastError) {
+            reject(chrome.runtime.lastError);
+          } else {
+            resolve(results);
+          }
+        });
+      } else {
+        chrome.bookmarks.search(query, (results) => {
+          if (chrome.runtime.lastError) {
+            reject(chrome.runtime.lastError);
+          } else {
+            resolve(results);
+          }
+        });
+      }
     });
   }
 
@@ -210,4 +256,14 @@ class Bookmarks {
   }
 }
 
-export { Bookmarks };
+export {
+  Bookmarks,
+  BookmarkCreateArg,
+  BookmarkDestination,
+  BookmarkChanges,
+  RemoveInfo,
+  ChangeInfo,
+  MoveInfo,
+  BookmarkTreeNode,
+  BookmarkSearchQuery
+};

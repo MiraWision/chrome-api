@@ -1,4 +1,6 @@
-import { NavigationFilter } from './types';
+interface NavigationFilter {
+  url: chrome.events.UrlFilter[];
+}
 
 class WebNavigation {
   public static async getAllFrames(details: { tabId: number }): Promise<chrome.webNavigation.GetAllFrameResultDetails[] | null> {
@@ -157,4 +159,4 @@ class WebNavigation {
   }
 }
 
-export { WebNavigation };
+export { WebNavigation, NavigationFilter };

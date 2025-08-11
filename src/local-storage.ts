@@ -1,4 +1,6 @@
-import { Storage } from './types';
+interface Storage {
+  [key: string]: any;
+}
 
 /**
  * A class that provides a type-safe wrapper around Chrome's local storage API.
@@ -114,4 +116,4 @@ class LocalStorage {
   }
 }
 
-export { LocalStorage };
+export { LocalStorage, Storage };

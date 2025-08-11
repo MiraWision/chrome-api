@@ -1,4 +1,6 @@
-import { ISyncStorage } from './types';
+interface ISyncStorage {
+  [key: string]: any;
+}
 
 /**
  * A class that provides a type-safe wrapper around Chrome's sync storage API.
@@ -125,4 +127,4 @@ class StorageSync {
   }
 }
 
-export { StorageSync };
+export { StorageSync, ISyncStorage };

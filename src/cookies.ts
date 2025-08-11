@@ -1,4 +1,25 @@
-import { CookieDetails, CookieQuery } from './types';
+interface CookieDetails {
+  url: string;
+  name: string;
+  value?: string;
+  domain?: string;
+  path?: string;
+  secure?: boolean;
+  httpOnly?: boolean;
+  sameSite?: chrome.cookies.SameSiteStatus;
+  expirationDate?: number;
+  storeId?: string;
+}
+
+interface CookieQuery {
+  url?: string;
+  name?: string;
+  domain?: string;
+  path?: string;
+  secure?: boolean;
+  session?: boolean;
+  storeId?: string;
+}
 
 /**
  * A class that provides a type-safe wrapper around Chrome's cookies API.
@@ -106,4 +127,4 @@ class Cookies {
   }
 }
 
-export { Cookies };
+export { Cookies, CookieDetails, CookieQuery };

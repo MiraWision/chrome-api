@@ -1,4 +1,40 @@
-import { DownloadOptions, DownloadQuery } from './types';
+interface DownloadOptions {
+  url: string;
+  filename?: string;
+  conflictAction?: chrome.downloads.FilenameConflictAction;
+  saveAs?: boolean;
+  method?: 'GET' | 'POST';
+  headers?: chrome.downloads.HeaderNameValuePair[];
+  body?: string;
+}
+
+interface DownloadQuery {
+  query?: string[];
+  startedBefore?: string;
+  startedAfter?: string;
+  endedBefore?: string;
+  endedAfter?: string;
+  totalBytesGreater?: number;
+  totalBytesLess?: number;
+  filenameRegex?: string;
+  urlRegex?: string;
+  limit?: number;
+  orderBy?: string[];
+  id?: number;
+  url?: string;
+  filename?: string;
+  danger?: chrome.downloads.DangerType;
+  mime?: string;
+  startTime?: string;
+  endTime?: string;
+  state?: 'in_progress' | 'interrupted' | 'complete';
+  paused?: boolean;
+  error?: number;
+  bytesReceived?: number;
+  totalBytes?: number;
+  fileSize?: number;
+  exists?: boolean;
+}
 
 /**
  * A class that provides a type-safe wrapper around Chrome's downloads API.
@@ -125,13 +161,12 @@ class Downloads {
    */
   public static async open(downloadId: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      chrome.downloads.open(downloadId, () => {
-        if (chrome.runtime.lastError) {
-          reject(chrome.runtime.lastError);
-        } else {
-          resolve();
-        }
-      });
+      chrome.downloads.open(downloadId);
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve();
+      }
     });
   }
 
@@ -223,7 +258,7 @@ class Downloads {
    * @param callback - Function called when a download's filename is being determined
    */
   public static addDeterminingFilenameListener(
-    callback: (downloadItem: chrome.downloads.DownloadItem, suggest: (suggestion?: chrome.downloads.FilenameSuggestion) => void) => void
+    callback: (downloadItem: chrome.downloads.DownloadItem, suggest: (suggestion?: { filename: string }) => void) => void
   ): void {
     chrome.downloads.onDeterminingFilename.addListener(callback);
   }
@@ -257,10 +292,10 @@ class Downloads {
    * @param callback - The listener function to remove
    */
   public static removeDeterminingFilenameListener(
-    callback: (downloadItem: chrome.downloads.DownloadItem, suggest: (suggestion?: chrome.downloads.FilenameSuggestion) => void) => void
+    callback: (downloadItem: chrome.downloads.DownloadItem, suggest: (suggestion?: { filename: string }) => void) => void
   ): void {
     chrome.downloads.onDeterminingFilename.removeListener(callback);
   }
 }
 
-export { Downloads };
+export { Downloads, DownloadOptions, DownloadQuery };
