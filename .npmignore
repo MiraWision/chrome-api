@@ -1,0 +1,7 @@
+node_modules
+tests
+docs
+mirawision-chrome-api-*.tgz
+src
+jest.config.js
+tsconfig.json

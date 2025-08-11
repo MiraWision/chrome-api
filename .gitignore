@@ -1,0 +1,16 @@
+node_modules/
+.DS_Store
+/mirawision-chrome-api-*.tgz
+/*.d.ts
+/*.js
+/bookmarks
+/commands
+/context-menu
+/cookies
+/downloads
+/local-storage
+/notifications
+/runtime
+/scripting
+/side-panel
+/storage-sync

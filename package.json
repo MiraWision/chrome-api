@@ -1,0 +1,101 @@
+{
+  "name": "@mirawision/chrome-api",
+  "version": "1.0.0",
+  "description": "A comprehensive TypeScript library for Chrome Extension API, providing type-safe wrappers and utilities for bookmarks, commands, context menus, cookies, downloads, storage, notifications, runtime, scripting, and side panel functionalities.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./bookmarks": {
+      "types": "./bookmarks/index.d.ts",
+      "default": "./bookmarks/index.js"
+    },
+    "./commands": {
+      "types": "./commands/index.d.ts",
+      "default": "./commands/index.js"
+    },
+    "./context-menu": {
+      "types": "./context-menu/index.d.ts",
+      "default": "./context-menu/index.js"
+    },
+    "./cookies": {
+      "types": "./cookies/index.d.ts",
+      "default": "./cookies/index.js"
+    },
+    "./downloads": {
+      "types": "./downloads/index.d.ts",
+      "default": "./downloads/index.js"
+    },
+    "./local-storage": {
+      "types": "./local-storage/index.d.ts",
+      "default": "./local-storage/index.js"
+    },
+    "./notifications": {
+      "types": "./notifications/index.d.ts",
+      "default": "./notifications/index.js"
+    },
+    "./runtime": {
+      "types": "./runtime/index.d.ts",
+      "default": "./runtime/index.js"
+    },
+    "./scripting": {
+      "types": "./scripting/index.d.ts",
+      "default": "./scripting/index.js"
+    },
+    "./side-panel": {
+      "types": "./side-panel/index.d.ts",
+      "default": "./side-panel/index.js"
+    },
+    "./storage-sync": {
+      "types": "./storage-sync/index.d.ts",
+      "default": "./storage-sync/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node index.js",
+    "test": "jest",
+    "pack": "npm pack",
+    "prepublish": "npm run build",
+    "publish": "npm publish --access public"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "api",
+    "bookmarks",
+    "commands",
+    "context-menu",
+    "cookies",
+    "downloads",
+    "local-storage",
+    "notifications",
+    "runtime",
+    "scripting",
+    "side-panel",
+    "storage-sync",
+    "typescript",
+    "type-safe",
+    "chrome-extension"
+  ],
+  "author": "Yelysei Lukin <yelysei277@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MiraWision/chrome-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MiraWision/chrome-api/issues"
+  },
+  "homepage": "https://mirawision.github.io/chrome-api",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "0.0.262",
+    "@types/jest": "29.5.12",
+    "jest": "29.7.0",
+    "ts-jest": "29.1.2",
+    "typescript": "5.3.3"
+  }
+}
