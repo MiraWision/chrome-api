@@ -10,48 +10,64 @@
       "default": "./index.js"
     },
     "./bookmarks": {
-      "types": "./bookmarks/index.d.ts",
-      "default": "./bookmarks/index.js"
+      "types": "./bookmarks.d.ts",
+      "default": "./bookmarks.js"
     },
     "./commands": {
-      "types": "./commands/index.d.ts",
-      "default": "./commands/index.js"
+      "types": "./commands.d.ts",
+      "default": "./commands.js"
     },
     "./context-menu": {
-      "types": "./context-menu/index.d.ts",
-      "default": "./context-menu/index.js"
+      "types": "./context-menu.d.ts",
+      "default": "./context-menu.js"
     },
     "./cookies": {
-      "types": "./cookies/index.d.ts",
-      "default": "./cookies/index.js"
+      "types": "./cookies.d.ts",
+      "default": "./cookies.js"
     },
     "./downloads": {
-      "types": "./downloads/index.d.ts",
-      "default": "./downloads/index.js"
+      "types": "./downloads.d.ts",
+      "default": "./downloads.js"
     },
     "./local-storage": {
-      "types": "./local-storage/index.d.ts",
-      "default": "./local-storage/index.js"
+      "types": "./local-storage.d.ts",
+      "default": "./local-storage.js"
     },
     "./notifications": {
-      "types": "./notifications/index.d.ts",
-      "default": "./notifications/index.js"
+      "types": "./notifications.d.ts",
+      "default": "./notifications.js"
     },
     "./runtime": {
-      "types": "./runtime/index.d.ts",
-      "default": "./runtime/index.js"
+      "types": "./runtime.d.ts",
+      "default": "./runtime.js"
     },
     "./scripting": {
-      "types": "./scripting/index.d.ts",
-      "default": "./scripting/index.js"
+      "types": "./scripting.d.ts",
+      "default": "./scripting.js"
+    },
+    "./tabs": {
+      "types": "./tabs.d.ts",
+      "default": "./tabs.js"
     },
     "./side-panel": {
-      "types": "./side-panel/index.d.ts",
-      "default": "./side-panel/index.js"
+      "types": "./side-panel.d.ts",
+      "default": "./side-panel.js"
     },
     "./storage-sync": {
-      "types": "./storage-sync/index.d.ts",
-      "default": "./storage-sync/index.js"
+      "types": "./storage-sync.d.ts",
+      "default": "./storage-sync.js"
+    },
+    "./web-navigation": {
+      "types": "./web-navigation.d.ts",
+      "default": "./web-navigation.js"
+    },
+    "./web-request": {
+      "types": "./web-request.d.ts",
+      "default": "./web-request.js"
+    },
+    "./windows": {
+      "types": "./windows.d.ts",
+      "default": "./windows.js"
     }
   },
   "scripts": {
@@ -77,6 +93,10 @@
     "scripting",
     "side-panel",
     "storage-sync",
+    "tabs",
+    "web-navigation",
+    "web-request",
+    "windows",
     "typescript",
     "type-safe",
     "chrome-extension"
