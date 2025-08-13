@@ -12,16 +12,16 @@ class StorageSync {
   /**
    * Retrieves a value from sync storage by key.
    * @param key - The key to retrieve
-   * @returns A promise that resolves to the stored data
+   * @returns A promise that resolves to the stored value for the specified key
    * @throws {Error} If there's an error retrieving the data
    */
-  public static async get(key: string): Promise<ISyncStorage> {
+  public static async get<T = any>(key: string): Promise<T> {
     return new Promise((resolve, reject) => {
       chrome.storage.sync.get([key], (result) => {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
         } else {
-          resolve(result as ISyncStorage);
+          resolve(result[key] as T);
         }
       });
     });
